@@ -1,0 +1,16 @@
+RESUMO: 11 PASSOU; 4 FALHOU; TOTAL 15
+PASSOU | CT001 | Cadastro com sucesso de um produto válido
+PASSOU | CT002 | Rejeição de SKU com formato inválido
+PASSOU | CT003 | Cadastro com sucesso de um depósito
+PASSOU | CT004 | Rejeição de código de depósito inválido ou em branco
+PASSOU | CT005 | Registro de entrada de lote com sucesso
+PASSOU | CT006 | Rejeição de lote com data de validade vencida
+PASSOU | CT007 | Cálculo correto do saldo físico e disponível
+PASSOU | CT008 | Realização de reserva de estoque com sucesso
+PASSOU | CT009 | Tentativa de reserva com saldo insuficiente
+PASSOU | CT010 | Expiração automática de reservas vencidas
+FALHOU | CT011 | Registro de saída via critério FEFO | UnsupportedOperationException: null
+PASSOU | CT012 | Bloqueio de saída superior ao saldo físico
+FALHOU | CT013 | Transferência atômica entre depósitos distintos | UnsupportedOperationException: null
+FALHOU | CT014 | Idempotência de transferência usando a mesma chave | UnsupportedOperationException: null
+FALHOU | CT015 | Cálculo do custo médio ponderado | AssertionError: custo médio ponderado | esperado=17.50, obtido=15.00

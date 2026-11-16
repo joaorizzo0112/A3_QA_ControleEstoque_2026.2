@@ -1,0 +1,23 @@
+ORIGEM: Maven Surefire / JUnit
+COMPILACAO: Java 17 (--release 17)
+EXECUCAO: 16/11/2026 00:48:54 -03:00
+RESULTADO: BUILD SUCCESS
+
+RESUMO: 15 PASSOU; 0 FALHOU; TOTAL 15
+PASSOU | CT001 | Cadastro com sucesso de um produto válido
+PASSOU | CT002 | Rejeição de SKU com formato inválido
+PASSOU | CT003 | Cadastro com sucesso de um depósito
+PASSOU | CT004 | Rejeição de código de depósito inválido ou em branco
+PASSOU | CT005 | Registro de entrada de lote com sucesso
+PASSOU | CT006 | Rejeição de lote com data de validade vencida
+PASSOU | CT007 | Cálculo correto do saldo físico e disponível
+PASSOU | CT008 | Realização de reserva de estoque com sucesso
+PASSOU | CT009 | Tentativa de reserva com saldo insuficiente
+PASSOU | CT010 | Expiração automática de reservas vencidas
+PASSOU | CT011 | Registro de saída via critério FEFO
+PASSOU | CT012 | Bloqueio de saída superior ao saldo físico
+PASSOU | CT013 | Transferência atômica entre depósitos distintos
+PASSOU | CT014 | Idempotência de transferência usando a mesma chave
+PASSOU | CT015 | Cálculo do custo médio ponderado
+
+LOG MAVEN ORIGINAL: resultado-apos-correcao-maven-original.txt

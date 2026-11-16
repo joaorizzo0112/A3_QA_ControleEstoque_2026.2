@@ -1,0 +1,37 @@
+TESTES CT001 A CT015 — SISTEMA DE CONTROLE DE ESTOQUE
+
+REQUISITOS
+- JDK 17 ou superior.
+- Apache Maven.
+- Compilação configurada para Java 17.
+
+EXECUÇÃO
+1. Abra a pasta estoque no VS Code.
+2. Abra o terminal na pasta que contém o pom.xml.
+3. Execute:
+
+mvn clean test
+
+O Maven executa a suíte JUnit pelo plugin Surefire.
+
+DOCUMENTAÇÃO
+- GUIA_COMPLETO_CT001_CT015.md: descrição dos casos.
+- Relatório técnico: entradas, saídas, correções e resultados.
+- resultado-antes-correcao.txt: histórico anterior às correções.
+- resultado-apos-correcao.txt: registro da execução após as correções.
+
+RELATÓRIOS JUNIT
+Os relatórios gerados pelo Maven ficam em:
+target/surefire-reports/
+
+EXECUTOR AUXILIAR
+ExecucaoCT001aCT015.java permite executar os cenários
+independentemente do JUnit. Seus resultados devem ser
+identificados separadamente dos resultados Maven/JUnit.
+
+HISTÓRICO
+A execução anterior apresentou 11 aprovações e quatro
+ocorrências em CT011, CT013, CT014 e CT015.
+
+Consulte a evidência da execução após as correções para
+verificar o resultado atual.

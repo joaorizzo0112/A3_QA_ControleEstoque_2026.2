@@ -1,0 +1,31 @@
+# Compilação e relatórios gerados pelo Maven
+target/
+
+# Classes compiladas fora do Maven
+*.class
+
+# Backups das correções
+backups/
+*.backup-*
+*.bak
+
+# Logs de falha da JVM
+hs_err_pid*.log
+replay_pid*.log
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Arquivos locais de IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Configurações locais com credenciais
+.env
+.env.*
+!.env.example
