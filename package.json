@@ -1,0 +1,13 @@
+{
+  "name": "a3-qa-controle-estoque-interface",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Verificações opcionais de navegador do projeto Java",
+  "scripts": {
+    "test:web": "node scripts/testar-interface.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "axe-core": "4.10.3"
+  }
+}

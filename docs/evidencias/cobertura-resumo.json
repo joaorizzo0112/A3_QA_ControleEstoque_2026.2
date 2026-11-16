@@ -1,0 +1,32 @@
+{
+  "INSTRUCTION": {
+    "type": "INSTRUCTION",
+    "missed": "1253",
+    "covered": "7115"
+  },
+  "BRANCH": {
+    "type": "BRANCH",
+    "missed": "225",
+    "covered": "479"
+  },
+  "LINE": {
+    "type": "LINE",
+    "missed": "212",
+    "covered": "1317"
+  },
+  "COMPLEXITY": {
+    "type": "COMPLEXITY",
+    "missed": "204",
+    "covered": "467"
+  },
+  "METHOD": {
+    "type": "METHOD",
+    "missed": "13",
+    "covered": "292"
+  },
+  "CLASS": {
+    "type": "CLASS",
+    "missed": "1",
+    "covered": "33"
+  }
+}

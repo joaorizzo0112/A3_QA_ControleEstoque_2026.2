@@ -1,0 +1,73 @@
+name: Qualidade do estoque
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  java:
+    name: Java ${{ matrix.java }} em ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        java: ["17", "21"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6.3.0
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
+      - name: Verificar no Linux
+        if: runner.os != 'Windows'
+        run: ./mvnw -B -ntp clean verify
+      - name: Verificar no Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\mvnw.cmd -B -ntp clean verify
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: evidencias-${{ matrix.os }}-java-${{ matrix.java }}
+          path: |
+            target/surefire-reports/
+            target/site/jacoco/
+            target/evidencias/
+  interface:
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6.3.0
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "22"
+      - run: ./mvnw -B -ntp -DskipTests package
+      - run: npm install --ignore-scripts
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run test:web
+        env:
+          BROWSER: ${{ matrix.browser }}
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: interface-${{ matrix.browser }}
+          path: target/evidencias/

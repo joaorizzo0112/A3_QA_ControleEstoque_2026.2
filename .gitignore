@@ -29,3 +29,8 @@ Desktop.ini
 .env
 .env.*
 !.env.example
+# Dados e dependências locais da aplicação
+.dados/
+node_modules/
+playwright-report/
+test-results/

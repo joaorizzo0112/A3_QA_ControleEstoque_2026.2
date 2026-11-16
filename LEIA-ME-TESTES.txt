@@ -1,37 +1,22 @@
-TESTES CT001 A CT015 — SISTEMA DE CONTROLE DE ESTOQUE
+CONTROLE DE ESTOQUE — A3 QA 2026.2
 
-REQUISITOS
-- JDK 17 ou superior.
-- Apache Maven.
-- Compilação configurada para Java 17.
+1. Abra a pasta que contém pom.xml no VS Code.
+2. Confirme que java -version e javac -version apresentam JDK 17 ou superior.
+3. No PowerShell: .\mvnw.cmd clean verify
+4. Execute: java -jar .\target\controle-estoque.jar
+5. Abra http://localhost:8080 no navegador.
 
-EXECUÇÃO
-1. Abra a pasta estoque no VS Code.
-2. Abra o terminal na pasta que contém o pom.xml.
-3. Execute:
+Contas e senhas da demonstração local: consulte README.md.
+Maven instalado separadamente não é necessário: o Wrapper está incluído.
 
-mvn clean test
+Documentação:
+- docs/RELATORIO_EXECUCAO.md
+- docs/MATRIZ_RASTREABILIDADE.md
+- docs/COMO_APRESENTAR.md
+- docs/DECISOES_E_VALIDACOES.md
 
-O Maven executa a suíte JUnit pelo plugin Surefire.
-
-DOCUMENTAÇÃO
-- GUIA_COMPLETO_CT001_CT015.md: descrição dos casos.
-- Relatório técnico: entradas, saídas, correções e resultados.
-- resultado-antes-correcao.txt: histórico anterior às correções.
-- resultado-apos-correcao.txt: registro da execução após as correções.
-
-RELATÓRIOS JUNIT
-Os relatórios gerados pelo Maven ficam em:
-target/surefire-reports/
-
-EXECUTOR AUXILIAR
-ExecucaoCT001aCT015.java permite executar os cenários
-independentemente do JUnit. Seus resultados devem ser
-identificados separadamente dos resultados Maven/JUnit.
-
-HISTÓRICO
-A execução anterior apresentou 11 aprovações e quatro
-ocorrências em CT011, CT013, CT014 e CT015.
-
-Consulte a evidência da execução após as correções para
-verificar o resultado atual.
+Os arquivos resultado-antes-correcao.txt e resultado-apos-correcao*.txt
+são evidências históricas da primeira suíte de 15 casos.
+O resultado da suíte ampliada está em docs/evidencias/maven-verify.txt.
+Os relatórios JUnit da sua execução ficam em target/surefire-reports/.
+O executor Java independente não substitui a suíte JUnit.
