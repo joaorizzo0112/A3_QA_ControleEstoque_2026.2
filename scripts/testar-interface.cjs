@@ -273,9 +273,15 @@ async function rodar() {
       true,
       "Conteúdo excede tela móvel em " + pagina,
     );
+    await acessibilidade(pagina + "-mobile");
   }
   await nav("inicio");
-  await acessibilidade("inicio-mobile");
+  await page.locator("#tabela-posicoes").focus();
+  await page.keyboard.press("ArrowRight");
+  await page.waitForFunction(
+    () => document.querySelector("#tabela-posicoes").scrollLeft > 0,
+  );
+  resultados.fluxos.push("rolagem horizontal da tabela pelo teclado");
   await page.screenshot({
     path: path.join(evidencias, "interface-mobile.png"),
     fullPage: true,

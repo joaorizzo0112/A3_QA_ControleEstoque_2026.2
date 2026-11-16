@@ -141,6 +141,9 @@ function etiqueta(valor) {
 }
 function tabela(id, colunas, linhas, legenda) {
   const alvo = $(id);
+  alvo.tabIndex = linhas.length ? 0 : -1;
+  alvo.setAttribute("role", "region");
+  alvo.setAttribute("aria-label", "Tabela: " + colunas.join(", "));
   alvo.replaceChildren();
   if (!linhas.length) {
     alvo.append(el("p", "Nenhum registro encontrado.", "vazio"));
