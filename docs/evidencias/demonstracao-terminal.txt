@@ -1,0 +1,8 @@
+Saldo físico: 20.000 | disponível: 20.000
+Após reservar 5: físico=20.000 | reservado=5.000 | disponível=15.000
+Após sair 3: físico=17.000 | disponível=12.000
+Após atender a reserva: físico=12.000 | disponível=12.000
+Após transferir 4: CD-01=8.000 | LOJA-01=4.000
+Custo médio na loja: R$ 12.50
+Inventário: CONCLUIDO | saldo final CD-01=8.000
+Alertas gerados: 3

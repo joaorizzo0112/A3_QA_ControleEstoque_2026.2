@@ -1,0 +1,66 @@
+[
+  {
+    "name": "br.edu.estoque.ConcorrenciaTest",
+    "tests": "5",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.022"
+  },
+  {
+    "name": "br.edu.estoque.CriteriosAceitacaoTest",
+    "tests": "24",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.177"
+  },
+  {
+    "name": "br.edu.estoque.DesempenhoTest",
+    "tests": "1",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "5.065"
+  },
+  {
+    "name": "br.edu.estoque.InventarioTest",
+    "tests": "11",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.03"
+  },
+  {
+    "name": "br.edu.estoque.PersistenciaTest",
+    "tests": "4",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.085"
+  },
+  {
+    "name": "br.edu.estoque.RegrasNegocioTest",
+    "tests": "84",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.203"
+  },
+  {
+    "name": "br.edu.estoque.ServicoEstoqueTest",
+    "tests": "15",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "0.023"
+  },
+  {
+    "name": "br.edu.estoque.ServidorHttpTest",
+    "tests": "15",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "time": "3.918"
+  }
+]

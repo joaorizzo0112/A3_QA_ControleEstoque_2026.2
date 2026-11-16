@@ -1,0 +1,12 @@
+CA-008 saída acima do disponível | esperado: rejeitar; físico=10.000, disponível=7.000 | obtido: saída aceita; físico=2.999, disponível=-0.001
+CA-004/005 SKU equivalente | esperado: normalizar e rejeitar duplicata | obtido: segundo cadastro aceito, SKU=sku-001, produtos=2
+UC-05 reserva com expiração passada | esperado: rejeitar | obtido: aceita, estado=ATIVA
+CA-011 lote que venceu após entrada | esperado: rejeitar saída normal | obtido: saída aceita, lote=9.000
+CA-019 chave com conteúdo diferente | esperado: rejeitar conflito | obtido: sem rejeição; retornou original=true, quantidade=5
+CA-022 reposição na igualdade | esperado: true | obtido: false
+CA-023 validade em 30 dias | esperado: lote incluído | obtido: incluído=false
+Campo quantidade acima do máximo | esperado: rejeitar 1000000.000 | obtido: aceita, saldo=1000000.000
+Campo custo abaixo de 0.01 | esperado: rejeitar 0.001 | obtido: aceito, custo=0.001
+Campo data após 2100-12-31 | esperado: rejeitar | obtido: aceita=2101-01-01
+UC-07 estado terminal | esperado: reserva permanece EXPIRADA | obtido: estado=CANCELADA
+CA-017 falha simulada no destino | esperado: origem=10.000; destino=0.000 | obtido: Falha simulada no crédito do destino; origem=5.000; destino=0.000

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Controle de Estoque | A3 QA</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="pular" href="#form-login">Pular para o conteúdo</a>
+    <section id="login" class="login-area" aria-labelledby="login-titulo">
+      <div class="login-card">
+        <span class="marca" aria-hidden="true">E</span>
+        <p class="sobretitulo">A3 · GARANTIA E QUALIDADE DE SOFTWARE</p>
+        <h1 id="login-titulo">Controle de estoque</h1>
+        <p>Produtos, lotes e movimentações em um só lugar.</p>
+        <form id="form-login">
+          <label
+            >Usuário<input
+              name="usuario"
+              autocomplete="username"
+              required
+              autofocus /></label
+          ><label
+            >Senha<input
+              name="senha"
+              type="password"
+              autocomplete="current-password"
+              required /></label
+          ><button class="principal" type="submit">Entrar</button>
+        </form>
+        <p class="ajuda">
+          As contas de demonstração estão descritas no README do projeto.
+        </p>
+      </div>
+    </section>
+    <div id="aplicacao" class="aplicacao" hidden>
+      <aside class="lateral">
+        <div class="identidade">
+          <span class="marca" aria-hidden="true">E</span>
+          <div><strong>Estoque</strong><span>A3 QA · 2026.2</span></div>
+        </div>
+        <nav aria-label="Navegação principal">
+          <button data-pagina="inicio" aria-current="page">Visão geral</button
+          ><button data-pagina="produtos">Produtos e depósitos</button
+          ><button data-pagina="movimentar">Lotes e movimentos</button
+          ><button data-pagina="reservas">Reservas</button
+          ><button data-pagina="transferir">Transferências</button
+          ><button data-pagina="inventarios" data-gestor>Inventário</button
+          ><button data-pagina="alertas">Alertas</button
+          ><button data-pagina="relatorios" data-gestao>Relatórios</button
+          ><button data-pagina="auditoria" data-gestao>Auditoria</button>
+        </nav>
+        <div class="conta">
+          <strong id="nome-conta"></strong><span id="perfil-conta"></span
+          ><button id="sair" class="discreto">Sair da conta</button>
+        </div>
+      </aside>
+      <main id="conteudo" tabindex="-1">
+        <header class="cabecalho">
+          <div>
+            <p class="sobretitulo">CONTROLE DE ESTOQUE</p>
+            <h1 id="titulo-pagina" tabindex="-1">Visão geral</h1>
+          </div>
+          <button id="atualizar" class="secundario">Atualizar dados</button>
+        </header>
+        <section id="pagina-inicio" class="pagina">
+          <div id="indicadores" class="indicadores"></div>
+          <div class="painel">
+            <div class="titulo-painel">
+              <h2>Posição do estoque</h2>
+              <span class="ajuda">Quantidades por unidade do produto</span>
+            </div>
+            <div id="tabela-posicoes" class="rolagem"></div>
+          </div>
+          <div class="nota">
+            As reservas comprometem o disponível. A saída comum utiliza apenas
+            lotes dentro da validade, em ordem FEFO.
+          </div>
+        </section>
+        <section id="pagina-produtos" class="pagina" hidden>
+          <div class="colunas" data-gestor>
+            <div class="painel">
+              <h2 id="produto-form-titulo">Cadastrar produto</h2>
+              <form id="form-produto">
+                <label
+                  >SKU<input
+                    name="sku"
+                    maxlength="20"
+                    minlength="3"
+                    required
+                    placeholder="SKU-003" /></label
+                ><label
+                  >Nome<input name="nome" required maxlength="200"
+                /></label>
+                <div class="linha">
+                  <label
+                    >Unidade<select name="unidade">
+                      <option>UN</option>
+                      <option>KG</option>
+                      <option>L</option>
+                      <option>M</option>
+                    </select></label
+                  ><label
+                    >Estoque mínimo<input
+                      name="minimo"
+                      inputmode="decimal"
+                      value="0,000"
+                      required
+                  /></label>
+                </div>
+                <div class="acoes">
+                  <button type="submit" class="principal">Salvar produto</button
+                  ><button type="button" id="cancelar-edicao" hidden>
+                    Cancelar edição
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="painel">
+              <h2>Cadastrar depósito</h2>
+              <form id="form-deposito">
+                <label
+                  >Código<input
+                    name="codigo"
+                    required
+                    placeholder="CD-02" /></label
+                ><label>Nome<input name="nome" required /></label
+                ><button type="submit" class="principal">
+                  Salvar depósito
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="painel">
+            <h2>Produtos cadastrados</h2>
+            <div id="tabela-produtos" class="rolagem"></div>
+          </div>
+          <div class="painel">
+            <h2>Depósitos</h2>
+            <div id="tabela-depositos" class="rolagem"></div>
+          </div>
+        </section>
+        <section id="pagina-movimentar" class="pagina" hidden>
+          <div class="colunas">
+            <div class="painel" data-operar>
+              <h2>Registrar movimentação</h2>
+              <form id="form-movimento">
+                <label
+                  >Operação<select name="tipo" id="tipo-movimento">
+                    <option value="ENTRADA">Entrada de lote</option>
+                    <option value="SAIDA">Saída FEFO</option>
+                    <option value="AJUSTE" data-gestor>
+                      Ajuste de quantidade
+                    </option>
+                    <option value="DESCARTE" data-gestor>
+                      Descarte autorizado
+                    </option>
+                  </select></label
+                >
+                <div id="campos-produto-movimento">
+                  <label
+                    >Produto<select
+                      name="sku"
+                      data-produtos
+                      required
+                    ></select></label
+                  ><label
+                    >Depósito<select
+                      name="deposito"
+                      data-depositos
+                      required
+                    ></select
+                  ></label>
+                </div>
+                <label id="campo-lote-ajuste" hidden
+                  >Lote<select name="loteId" data-lotes></select
+                ></label>
+                <div id="campos-entrada">
+                  <div class="linha">
+                    <label
+                      >Fornecedor<input
+                        name="fornecedor"
+                        value="FORN-01" /></label
+                    ><label
+                      >Número do lote<input
+                        name="numero"
+                        placeholder="LOTE-003"
+                    /></label>
+                  </div>
+                  <div class="linha">
+                    <label
+                      >Custo unitário (R$)<input
+                        name="custo"
+                        inputmode="decimal"
+                        placeholder="12,50" /></label
+                    ><label
+                      >Validade<input
+                        name="validade"
+                        type="date"
+                        min="2000-01-01"
+                        max="2100-12-31"
+                    /></label>
+                  </div>
+                </div>
+                <label
+                  ><span id="rotulo-quantidade">Quantidade</span
+                  ><input
+                    name="quantidade"
+                    inputmode="decimal"
+                    required
+                    placeholder="0,001"
+                /></label>
+                <p class="ajuda">
+                  Use vírgula ou ponto decimal, sem separador de milhar. Ajustes
+                  aceitam variação negativa.
+                </p>
+                <label id="campo-motivo" hidden
+                  >Justificativa (10 a 200 caracteres)<textarea
+                    name="motivo"
+                    minlength="10"
+                    maxlength="200"
+                    rows="3"
+                  ></textarea></label
+                ><button class="principal" type="submit">
+                  Confirmar movimentação
+                </button>
+              </form>
+            </div>
+            <div class="painel">
+              <h2>Lotes registrados</h2>
+              <p class="ajuda">
+                A validade e o custo original acompanham os lotes nas
+                transferências.
+              </p>
+              <div id="tabela-lotes" class="rolagem"></div>
+            </div>
+          </div>
+        </section>
+        <section id="pagina-reservas" class="pagina" hidden>
+          <div class="painel" data-operar>
+            <h2>Reservar estoque</h2>
+            <form id="form-reserva" class="form-horizontal">
+              <label
+                >Produto<select
+                  name="sku"
+                  data-produtos
+                  required
+                ></select></label
+              ><label
+                >Depósito<select
+                  name="deposito"
+                  data-depositos
+                  required
+                ></select></label
+              ><label
+                >Quantidade<input
+                  name="quantidade"
+                  inputmode="decimal"
+                  required /></label
+              ><label
+                >Expira em<input
+                  name="expiraEm"
+                  type="datetime-local"
+                  required /></label
+              ><button class="principal" type="submit">Criar reserva</button>
+            </form>
+          </div>
+          <div class="painel">
+            <h2>Reservas registradas</h2>
+            <div id="tabela-reservas" class="rolagem"></div>
+          </div>
+        </section>
+        <section id="pagina-transferir" class="pagina" hidden>
+          <div class="painel" data-operar>
+            <h2>Transferir entre depósitos</h2>
+            <p>
+              Todos os itens são movimentados juntos. Se algum item falhar, a
+              transferência inteira é desfeita.
+            </p>
+            <form id="form-transferencia">
+              <div class="linha">
+                <label
+                  >Origem<select
+                    name="origem"
+                    data-depositos
+                    required
+                  ></select></label
+                ><label
+                  >Destino<select
+                    name="destino"
+                    data-depositos
+                    required
+                  ></select
+                ></label>
+              </div>
+              <div id="itens-transferencia"></div>
+              <div class="acoes">
+                <button type="button" id="adicionar-item">
+                  Adicionar produto</button
+                ><button class="principal" type="submit">
+                  Confirmar transferência
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="painel">
+            <h2>Transferências no período</h2>
+            <div id="tabela-transferencias" class="rolagem"></div>
+          </div>
+        </section>
+        <section id="pagina-inventarios" class="pagina" hidden>
+          <div class="painel">
+            <h2>Abrir inventário</h2>
+            <form id="form-inventario" class="form-horizontal">
+              <label
+                >Depósito<select
+                  name="deposito"
+                  data-depositos
+                  required
+                ></select></label
+              ><button class="principal" type="submit">Abrir inventário</button>
+            </form>
+          </div>
+          <div class="painel">
+            <label
+              >Inventário selecionado<select id="inventario-atual"></select
+            ></label>
+            <div id="inventario-resumo"></div>
+            <div class="acoes" id="acoes-inventario">
+              <button data-inventario-acao="iniciar">Iniciar contagem</button
+              ><button data-inventario-acao="revisar">
+                Enviar para revisão</button
+              ><button data-inventario-acao="cancelar" class="perigo">
+                Cancelar inventário
+              </button>
+            </div>
+            <form id="form-contagem">
+              <div class="linha">
+                <label
+                  >Lote<select
+                    name="loteId"
+                    id="lote-contagem"
+                    required
+                  ></select></label
+                ><label
+                  >Quantidade contada<input
+                    name="quantidade"
+                    inputmode="decimal"
+                    required
+                    placeholder="0,000"
+                /></label>
+              </div>
+              <button type="submit" class="principal">
+                Registrar contagem
+              </button>
+            </form>
+            <div id="tabela-contagens" class="rolagem"></div>
+            <form id="form-conclusao">
+              <label
+                >Justificativa da conciliação<textarea
+                  name="motivo"
+                  required
+                  minlength="10"
+                  maxlength="200"
+                  rows="3"
+                ></textarea>
+              </label>
+              <p class="ajuda">
+                Selecione as contagens aprovadas na tabela. Movimentos
+                posteriores à abertura exigem nova conferência.
+              </p>
+              <button class="principal" type="submit">
+                Aprovar e concluir inventário
+              </button>
+            </form>
+            <details>
+              <summary>Histórico de contagens</summary>
+              <div id="historico-contagens" class="rolagem"></div>
+            </details>
+          </div>
+        </section>
+        <section id="pagina-alertas" class="pagina" hidden>
+          <div class="painel">
+            <div class="titulo-painel">
+              <h2>Reposição e validade</h2>
+              <button id="gerar-alertas" data-gestor>Verificar agora</button>
+            </div>
+            <p class="ajuda">
+              Inclui estoque igual ao mínimo e vencimento em exatamente 30 dias.
+              Cada ocorrência é registrada uma vez por dia.
+            </p>
+            <div id="tabela-alertas" class="rolagem"></div>
+          </div>
+        </section>
+        <section id="pagina-relatorios" class="pagina" hidden>
+          <div class="painel">
+            <h2>Consultar período</h2>
+            <form id="form-relatorio" class="form-horizontal">
+              <label
+                >Produto<select
+                  name="sku"
+                  data-produtos
+                  data-todos
+                ></select></label
+              ><label
+                >Depósito<select
+                  name="deposito"
+                  data-depositos
+                  data-todos
+                ></select></label
+              ><label
+                >Data inicial<input name="inicio" type="date" required /></label
+              ><label>Data final<input name="fim" type="date" required /></label
+              ><button class="principal" type="submit">Gerar relatório</button>
+            </form>
+          </div>
+          <div id="resumo-relatorio" class="indicadores"></div>
+          <div class="painel">
+            <div class="titulo-painel">
+              <h2>Movimentações</h2>
+              <button id="exportar-csv" disabled>Exportar CSV</button>
+            </div>
+            <p class="ajuda">
+              O início e o fim do período estão incluídos. A posição de estoque
+              mostra o saldo atual.
+            </p>
+            <div id="tabela-relatorio" class="rolagem"></div>
+          </div>
+        </section>
+        <section id="pagina-auditoria" class="pagina" hidden>
+          <div class="painel">
+            <h2>Eventos de auditoria</h2>
+            <p class="ajuda">
+              Ator, instante, ação, recurso, resultado e identificador de
+              atendimento.
+            </p>
+            <div id="tabela-auditoria" class="rolagem"></div>
+          </div>
+        </section>
+        <footer>UNIFACS · Garantia e Qualidade de Software · A3 2026.2</footer>
+      </main>
+    </div>
+    <div
+      id="aviso"
+      class="aviso"
+      role="status"
+      aria-live="polite"
+      tabindex="-1"
+      hidden
+    ></div>
+  </body>
+</html>

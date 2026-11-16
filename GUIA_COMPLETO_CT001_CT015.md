@@ -2,7 +2,7 @@
 
 ## Base utilizada
 
-Os 15 casos abaixo seguem a seção 10 do documento Especificação e Planejamento de Testes de Software, da primeira entrega do Sistema de Controle de Estoque. Os códigos, nomes, requisitos relacionados e resultados esperados foram mantidos conforme a especificação. A classe `ServicoEstoqueTest.java` contém os 15 métodos `@Test` para JUnit Jupiter 5.11.0.
+Os CT001–CT015 identificam os cenários históricos da primeira versão do projeto. Nesta entrega, os testes são complementados pelos RF, RN e critérios CA-001–CA-024 da Especificação de Requisitos fornecida. A suíte usa JUnit Jupiter 5.11.0. A rastreabilidade revisada e os resultados da suíte ampliada estão em `docs/MATRIZ_RASTREABILIDADE.md` e `docs/RELATORIO_EXECUCAO.md`.
 
 ## Como executar
 
@@ -114,16 +114,13 @@ O projeto está configurado para Java 17, e a execução registrada foi compilad
 - Verificação: confirmar exceção e que nenhuma reserva foi criada.
 - Por que importa: impede comprometer quantidade que o depósito não possui disponível.
 
-### CT010 — Expiração automática de reservas vencidas
+### CT010 — Expiração de reservas
 
-- Requisito: RF-012 | Tipo: funcional | Prioridade: alta.
-- Pré-condição: estoque suficiente para criar reserva.
-- Entrada: reserva cuja expiração ocorreu um segundo antes do relógio fixo.
-- Ação: chamar expirarReservas.
-- Esperado: estado muda de ATIVA para EXPIRADA.
-- Verificação: conferir estado após a chamada.
-- Por que importa: libera reservas que não foram atendidas no prazo.
-- Observação: a implementação corrigida considera o instante de expiração inclusive. O CT010 original usa uma data passada; a condição no instante exato é uma verificação complementar.
+- Preparação: estoque físico de 10,000 unidades e relógio controlado.
+- Entrada: reserva de 2,000 com expiração em T+1 segundo.
+- Ação: avançar o relógio a T+2 segundos e executar a expiração.
+- Esperado: estado EXPIRADA. O CA-014 complementa o cenário no instante exato.
+- Ajuste: a versão antiga criava uma reserva já vencida, em desacordo com o UC-05. A preparação agora respeita a criação com expiração futura.
 
 ### CT011 — Registro de saída via critério FEFO
 
@@ -212,3 +209,7 @@ O guia descreve os cenários e o histórico; os relatórios gerados na execuçã
 ## Como apresentar
 
 Para cada CT, mostre: código e objetivo, pré-condição, dados de entrada, ação, resultado esperado e resultado obtido. Para qualquer falha, apresente a mensagem/stack trace e explique o impacto. Não altere o resultado obtido para “passou” sem corrigir o código e executar novamente.
+
+## Suíte ampliada
+
+A versão 2.0.0 acrescenta critérios de aceitação, regras, inventário, concorrência, recuperação, HTTP e desempenho. Os registros de 15 aprovações acima são históricos. Consulte `docs/RELATORIO_EXECUCAO.md` para as 159 execuções JUnit desta entrega e suas limitações.
