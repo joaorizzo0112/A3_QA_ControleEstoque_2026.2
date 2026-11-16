@@ -66,3 +66,22 @@ O relatório técnico registra as entradas, saídas esperadas, resultados obtido
 Os registros anteriores às correções devem ser preservados como histórico. Os resultados atuais devem corresponder às evidências da execução da versão corrigida.
 
 A especificação de requisitos é a referência para avaliar o comportamento do sistema.
+
+## Equipe
+
+- Adriano Santos Moura
+- Guilherme Ribeiro dos Santos
+- Gustavo Lopes Souza
+- João Carvalho Rizzo Summers
+- Kate Araujo dos Reis
+- Vitória Souza Silva
+
+## Professores
+
+- Luiz Henrique Souza Almeida Santos
+- Enderson Nobre Santos
+
+## Instituição
+
+UNIFACS — Universidade Salvador  
+Garantia e Qualidade de Software — A3 — 2026.2
