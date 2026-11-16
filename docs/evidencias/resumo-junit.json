@@ -5,7 +5,7 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.022"
+    "time": "0.023"
   },
   {
     "name": "br.edu.estoque.CriteriosAceitacaoTest",
@@ -13,7 +13,7 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.177"
+    "time": "0.215"
   },
   {
     "name": "br.edu.estoque.DesempenhoTest",
@@ -21,15 +21,15 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "5.065"
+    "time": "4.982"
   },
   {
     "name": "br.edu.estoque.InventarioTest",
-    "tests": "11",
+    "tests": "31",
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.03"
+    "time": "0.108"
   },
   {
     "name": "br.edu.estoque.PersistenciaTest",
@@ -37,15 +37,15 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.085"
+    "time": "0.072"
   },
   {
     "name": "br.edu.estoque.RegrasNegocioTest",
-    "tests": "84",
+    "tests": "86",
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.203"
+    "time": "0.258"
   },
   {
     "name": "br.edu.estoque.ServicoEstoqueTest",
@@ -53,7 +53,7 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "0.023"
+    "time": "0.015"
   },
   {
     "name": "br.edu.estoque.ServidorHttpTest",
@@ -61,6 +61,6 @@
     "errors": "0",
     "failures": "0",
     "skipped": "0",
-    "time": "3.918"
+    "time": "3.956"
   }
 ]

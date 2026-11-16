@@ -1,23 +1,23 @@
 {
   "INSTRUCTION": {
     "type": "INSTRUCTION",
-    "missed": "1258",
-    "covered": "7110"
+    "missed": "1253",
+    "covered": "7115"
   },
   "BRANCH": {
     "type": "BRANCH",
-    "missed": "228",
-    "covered": "476"
+    "missed": "225",
+    "covered": "479"
   },
   "LINE": {
     "type": "LINE",
-    "missed": "213",
-    "covered": "1316"
+    "missed": "212",
+    "covered": "1317"
   },
   "COMPLEXITY": {
     "type": "COMPLEXITY",
-    "missed": "207",
-    "covered": "464"
+    "missed": "204",
+    "covered": "467"
   },
   "METHOD": {
     "type": "METHOD",

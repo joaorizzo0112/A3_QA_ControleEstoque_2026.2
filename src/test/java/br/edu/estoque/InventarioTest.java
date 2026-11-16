@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import br.edu.estoque.dominio.*;
 import java.util.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InventarioTest extends BaseTeste {
   @Test
@@ -143,5 +146,71 @@ class InventarioTest extends BaseTeste {
         () ->
             como(Perfil.OPERADOR, "CD-01")
                 .concluirInventario(i.id(), Set.of(l.id()), "Conciliação autorizada"));
+  }
+
+  private Inventario prepararEstado(String estado, Lote lote) {
+    Inventario i = s.abrirInventario("CD-01", chave());
+    if (estado.equals("CANCELADO")) {
+      s.cancelarInventario(i.id());
+      return s.inventarios().get(0);
+    }
+    if (!estado.equals("ABERTO")) s.iniciarInventario(i.id());
+    if (estado.equals("EM_REVISAO") || estado.equals("CONCLUIDO")) {
+      s.registrarContagem(i.id(), lote.id(), bd("10"));
+      s.revisarInventario(i.id());
+    }
+    if (estado.equals("CONCLUIDO"))
+      s.concluirInventario(i.id(), Set.of(lote.id()), "Conciliação aprovada no teste");
+    return s.inventarios().get(0);
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"ABERTO", "EM_CONTAGEM", "EM_REVISAO"})
+  void UC10_cancelamentoPermitidoAntesDaConclusao(String estado) {
+    Lote l = entrada("L1", "10", "2", 60);
+    Inventario i = prepararEstado(estado, l);
+    s.cancelarInventario(i.id());
+    assertEquals(EstadoInventario.CANCELADO, s.inventarios().get(0).estado());
+    decimal("10", s.saldoFisico("SKU-001", "CD-01"));
+  }
+
+  @ParameterizedTest
+  @CsvSource({
+    "ABERTO,contar",
+    "ABERTO,revisar",
+    "ABERTO,concluir",
+    "EM_CONTAGEM,iniciar",
+    "EM_CONTAGEM,concluir",
+    "EM_REVISAO,iniciar",
+    "EM_REVISAO,contar",
+    "EM_REVISAO,revisar",
+    "CONCLUIDO,iniciar",
+    "CONCLUIDO,contar",
+    "CONCLUIDO,revisar",
+    "CONCLUIDO,cancelar",
+    "CANCELADO,iniciar",
+    "CANCELADO,contar",
+    "CANCELADO,revisar",
+    "CANCELADO,concluir",
+    "CANCELADO,cancelar"
+  })
+  void UC10_UC11_transicoesProibidasSemEfeito(String estado, String acao) {
+    Lote l = entrada("L1", "10", "2", 60);
+    Inventario i = prepararEstado(estado, l);
+    assertThrows(
+        IllegalStateException.class,
+        () -> {
+          switch (acao) {
+            case "iniciar" -> s.iniciarInventario(i.id());
+            case "contar" -> s.registrarContagem(i.id(), l.id(), bd("8"));
+            case "revisar" -> s.revisarInventario(i.id());
+            case "concluir" ->
+                s.concluirInventario(i.id(), Set.of(l.id()), "Conciliação aprovada no teste");
+            case "cancelar" -> s.cancelarInventario(i.id());
+            default -> throw new AssertionError("Ação desconhecida no caso de teste");
+          }
+        });
+    assertEquals(i.estado(), s.inventarios().get(0).estado());
+    decimal("10", s.saldoFisico("SKU-001", "CD-01"));
   }
 }

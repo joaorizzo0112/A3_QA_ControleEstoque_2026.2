@@ -33,25 +33,25 @@ Espelho local de dependências preparado
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running br.edu.estoque.CriteriosAceitacaoTest
-[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.177 s -- in br.edu.estoque.CriteriosAceitacaoTest
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.215 s -- in br.edu.estoque.CriteriosAceitacaoTest
 [INFO] Running br.edu.estoque.RegrasNegocioTest
-[INFO] Tests run: 84, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.203 s -- in br.edu.estoque.RegrasNegocioTest
+[INFO] Tests run: 86, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.258 s -- in br.edu.estoque.RegrasNegocioTest
 [INFO] Running br.edu.estoque.InventarioTest
-[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in br.edu.estoque.InventarioTest
+[INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.108 s -- in br.edu.estoque.InventarioTest
 [INFO] Running br.edu.estoque.ServicoEstoqueTest
-[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in br.edu.estoque.ServicoEstoqueTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in br.edu.estoque.ServicoEstoqueTest
 [INFO] Running br.edu.estoque.ServidorHttpTest
-[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.918 s -- in br.edu.estoque.ServidorHttpTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.956 s -- in br.edu.estoque.ServidorHttpTest
 [INFO] Running br.edu.estoque.PersistenciaTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s -- in br.edu.estoque.PersistenciaTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in br.edu.estoque.PersistenciaTest
 [INFO] Running br.edu.estoque.DesempenhoTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.065 s -- in br.edu.estoque.DesempenhoTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.982 s -- in br.edu.estoque.DesempenhoTest
 [INFO] Running br.edu.estoque.ConcorrenciaTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in br.edu.estoque.ConcorrenciaTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in br.edu.estoque.ConcorrenciaTest
 [INFO] 
 [INFO] Results:
 [INFO] 
-[INFO] Tests run: 159, Failures: 0, Errors: 0, Skipped: 0
+[INFO] Tests run: 181, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] 
 [INFO] --- jar:3.4.1:jar (default-jar) @ controle-estoque ---
@@ -71,6 +71,6 @@ Espelho local de dependências preparado
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.548 s
-[INFO] Finished at: 2026-11-16T14:48:34-03:00
+[INFO] Total time:  14.094 s
+[INFO] Finished at: 2026-11-16T15:02:41-03:00
 [INFO] ------------------------------------------------------------------------

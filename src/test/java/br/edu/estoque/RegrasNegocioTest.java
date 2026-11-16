@@ -20,7 +20,7 @@ class RegrasNegocioTest extends BaseTeste {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"0.001", "999999.998", "999999.999"})
+  @ValueSource(strings = {"0.001", "0.002", "999999.998", "999999.999"})
   void RF005_aceitaQuantidadesNoDominio(String q) {
     entrada("L1", q, "1", 60);
     decimal(q, s.saldoFisico("SKU-001", "CD-01"));
@@ -53,7 +53,7 @@ class RegrasNegocioTest extends BaseTeste {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"ABC", "ABCDEFGHIJKLMNOPQRST", "ABCDEFGHIJKLMNOPQRS"})
+  @ValueSource(strings = {"ABC", "ABCD", "ABCDEFGHIJKLMNOPQRST", "ABCDEFGHIJKLMNOPQRS"})
   void RF001_aceitaSkuNosLimites(String sku) {
     assertEquals(sku, s.cadastrarProduto(sku, "Teste", Unidade.UN, bd("0")).sku());
   }
@@ -209,10 +209,10 @@ class RegrasNegocioTest extends BaseTeste {
   void RN012_expiracaoAntesNoEDepoisDoLimite() {
     entrada("L1", "10", "2", 60);
     Reserva r = reservar("3");
-    clock.avancar(Duration.ofMinutes(59));
+    clock.avancar(Duration.ofHours(1).minusNanos(1));
     assertEquals(0, s.expirarReservas());
     decimal("7", s.saldoDisponivel("SKU-001", "CD-01"));
-    clock.avancar(Duration.ofMinutes(1));
+    clock.avancar(Duration.ofNanos(1));
     assertEquals(1, s.expirarReservas());
     clock.avancar(Duration.ofNanos(1));
     assertEquals(0, s.expirarReservas());

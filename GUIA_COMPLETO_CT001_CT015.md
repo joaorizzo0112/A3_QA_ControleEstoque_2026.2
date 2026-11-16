@@ -212,4 +212,4 @@ Para cada CT, mostre: código e objetivo, pré-condição, dados de entrada, aç
 
 ## Suíte ampliada
 
-A versão 2.0.0 acrescenta critérios de aceitação, regras, inventário, concorrência, recuperação, HTTP e desempenho. Os registros de 15 aprovações acima são históricos. Consulte `docs/RELATORIO_EXECUCAO.md` para as 159 execuções JUnit desta entrega e suas limitações.
+A versão 2.0.0 acrescenta critérios de aceitação, regras, inventário, concorrência, recuperação, HTTP e desempenho. Os registros de 15 aprovações acima são históricos. Consulte `docs/RELATORIO_EXECUCAO.md` para as 181 execuções JUnit desta entrega e suas limitações.

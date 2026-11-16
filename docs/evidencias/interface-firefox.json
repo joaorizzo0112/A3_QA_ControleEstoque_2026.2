@@ -1,0 +1,79 @@
+{
+  "navegador": "firefox",
+  "versao": "153.0",
+  "fluxos": [
+    "login gestor e posição inicial",
+    "cadastro de produto",
+    "entrada com decimal pt-BR",
+    "criação e atendimento de reserva",
+    "transferência",
+    "inventário completo com ajuste aprovado",
+    "relatório e exportação CSV",
+    "rolagem horizontal da tabela pelo teclado",
+    "layout móvel sem rolagem horizontal da página",
+    "auditor com interface de consulta"
+  ],
+  "acessibilidade": [
+    {
+      "tela": "login",
+      "violacoes": []
+    },
+    {
+      "tela": "inicio",
+      "violacoes": []
+    },
+    {
+      "tela": "produtos",
+      "violacoes": []
+    },
+    {
+      "tela": "movimentar",
+      "violacoes": []
+    },
+    {
+      "tela": "reservas",
+      "violacoes": []
+    },
+    {
+      "tela": "transferir",
+      "violacoes": []
+    },
+    {
+      "tela": "inventarios",
+      "violacoes": []
+    },
+    {
+      "tela": "alertas",
+      "violacoes": []
+    },
+    {
+      "tela": "relatorios",
+      "violacoes": []
+    },
+    {
+      "tela": "auditoria",
+      "violacoes": []
+    },
+    {
+      "tela": "inicio-mobile",
+      "violacoes": []
+    },
+    {
+      "tela": "produtos-mobile",
+      "violacoes": []
+    },
+    {
+      "tela": "movimentar-mobile",
+      "violacoes": []
+    },
+    {
+      "tela": "reservas-mobile",
+      "violacoes": []
+    },
+    {
+      "tela": "inventarios-mobile",
+      "violacoes": []
+    }
+  ],
+  "sucesso": true
+}

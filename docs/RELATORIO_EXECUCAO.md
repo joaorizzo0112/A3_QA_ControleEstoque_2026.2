@@ -13,22 +13,22 @@
 
 ## Resultado observado
 
-**159 testes executados, zero falhas, zero erros, zero ignorados. BUILD SUCCESS.**
+**181 testes executados, zero falhas, zero erros, zero ignorados. BUILD SUCCESS.**
 
 | Suíte | Testes | Falhas | Erros | Ignorados |
 | --- | --- | --- | --- | --- |
 | ConcorrenciaTest | 5 | 0 | 0 | 0 |
 | CriteriosAceitacaoTest | 24 | 0 | 0 | 0 |
 | DesempenhoTest | 1 | 0 | 0 | 0 |
-| InventarioTest | 11 | 0 | 0 | 0 |
+| InventarioTest | 31 | 0 | 0 | 0 |
 | PersistenciaTest | 4 | 0 | 0 | 0 |
-| RegrasNegocioTest | 84 | 0 | 0 | 0 |
+| RegrasNegocioTest | 86 | 0 | 0 | 0 |
 | ServicoEstoqueTest | 15 | 0 | 0 | 0 |
 | ServidorHttpTest | 15 | 0 | 0 | 0 |
 
 O total conta individualmente as invocações parametrizadas. O [log Maven](evidencias/maven-verify.txt) e o [resumo extraído do Surefire](evidencias/resumo-junit.json) sustentam o resultado. Os XML completos são regenerados em `target/surefire-reports/`.
 
-Cobertura JaCoCo observada: **86.1% de linhas**, **67.6% de ramos** e **85.0% de instruções**, considerando todas as classes da aplicação. Cobertura de código não equivale a conformidade integral. O HTML completo é gerado em `target/site/jacoco/index.html`; os contadores desta execução estão em [cobertura-resumo.json](evidencias/cobertura-resumo.json).
+Cobertura JaCoCo observada: **86.1% de linhas**, **68.0% de ramos** e **85.0% de instruções**, considerando todas as classes da aplicação. Cobertura de código não equivale a conformidade integral. O HTML completo é gerado em `target/site/jacoco/index.html`; os contadores desta execução estão em [cobertura-resumo.json](evidencias/cobertura-resumo.json).
 
 ## Histórico dos defeitos
 
@@ -110,8 +110,8 @@ Medição observada, com 100 mil lotes, aquecimento e vinte amostras por operaç
 
 ```text
 100000 lotes; 20 amostras por operação; P95 pelo posto ceil(0.95*N).
-Consulta P95 (ms): 42.751111
-Movimentação P95 (ms): 225.341674
+Consulta P95 (ms): 30.490572
+Movimentação P95 (ms): 239.729059
 Armazenamento em memória; sem rede e sem persistência em disco.
 ```
 
@@ -121,6 +121,14 @@ Os limites de aceitação são P95 ≤ 2.000 ms para consulta e ≤ 1.000 ms par
 
 Os quinze testes HTTP verificam sessão, permissões, CSRF, resposta de conflito/validação, precisão decimal, JSON inválido, logout, atendimento de reserva e arquivos web servidos. O JAR executável também foi exercitado no modo `--demo`; a [saída observada](evidencias/demonstracao-terminal.txt) corresponde ao [roteiro](COMO_APRESENTAR.md).
 
-O roteiro automatizado de navegador está em `scripts/testar-interface.cjs`, com execução prevista no workflow de qualidade. A execução local de Chromium foi impedida por uma restrição do ambiente antes de abrir a aplicação; isso não foi registrado como teste visual aprovado. Resultados efetivos da CI devem ser acrescentados após a execução.
+O roteiro de navegador foi executado na integração contínua: **Chromium 151.0.7922.34 e Firefox 153.0**, ambos aprovados, com dez fluxos e quinze verificações de tela/estado por navegador, sem violações detectadas pelo axe nas regras WCAG selecionadas. Isso inclui login, produto, entrada decimal, reserva, atendimento, transferência, inventário, CSV, rolagem por teclado e consulta de auditor.
+
+A primeira execução web identificou `scrollable-region-focusable` na tabela móvel. A correção tornou a região alcançável pelo teclado, nomeou a região e acrescentou foco visível. A reexecução passou nos dois navegadores. Os resultados estruturados estão em [interface-chromium.json](evidencias/interface-chromium.json) e [interface-firefox.json](evidencias/interface-firefox.json).
+
+A [execução de CI observada](https://github.com/joaorizzo0112/A3_QA_ControleEstoque_2026.2/actions/runs/43924233298) também aprovou Java 17/21 em Linux/Windows. Essa execução corresponde ao commit `3fe53222000842dadeb3ea9f7a87b9aee3d32446`, anterior apenas à ampliação adicional dos testes de limites e transições para 181 casos; os arquivos da aplicação são os mesmos. O resultado mais recente da branch está disponível no PR.
+
+![Interface desktop com dados de teste](imagens/interface-desktop.png)
+
+A inspeção automática não substitui avaliação humana WCAG. A revisão das imagens confirmou o painel no desktop e no celular, com rolagem da tabela contida na própria região.
 
 Acessibilidade WCAG integral, duas versões estáveis de cada navegador e disponibilidade mensal exigem as validações externas descritas em [Decisões e validações](DECISOES_E_VALIDACOES.md). O parâmetro de limite de depósitos existe e está testado; o número contratual não é informado no PDF.

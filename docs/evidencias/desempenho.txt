@@ -1,4 +1,4 @@
 100000 lotes; 20 amostras por operação; P95 pelo posto ceil(0.95*N).
-Consulta P95 (ms): 42.751111
-Movimentação P95 (ms): 225.341674
+Consulta P95 (ms): 30.490572
+Movimentação P95 (ms): 239.729059
 Armazenamento em memória; sem rede e sem persistência em disco.

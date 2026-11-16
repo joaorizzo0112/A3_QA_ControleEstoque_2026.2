@@ -4,6 +4,10 @@ Projeto acadêmico da UNIFACS para a A3 de Garantia e Qualidade de Software — 
 
 A referência funcional é a Especificação de Requisitos, versão 1.0, fornecida separadamente ao grupo. A [matriz de rastreabilidade](docs/MATRIZ_RASTREABILIDADE.md) relaciona os requisitos às operações e aos testes. O [relatório de execução](docs/RELATORIO_EXECUCAO.md) apresenta entradas, resultados e limitações verificadas.
 
+**Validação registrada:** 181 testes JUnit aprovados; critérios CA-001 a CA-024 cobertos; fluxos web aprovados em Chromium e Firefox. As validações operacionais complementares estão identificadas no relatório.
+
+![Visão geral com dados de teste](docs/imagens/interface-desktop.png)
+
 ## Executar no Windows
 
 Abra a pasta que contém `pom.xml` no VS Code. No terminal PowerShell:

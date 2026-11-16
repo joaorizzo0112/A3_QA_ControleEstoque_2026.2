@@ -27,7 +27,7 @@ As operações estão em `src/main/java/br/edu/estoque/servico/ServicoEstoque.ja
 | RF-015 | `ajustarLote`, gestor, justificativa e invariantes | RN017_*, RF015_ajusteNaoPodeViolarReservado; RNF018_ajusteIdempotente |
 | RF-016 | `abrirInventario`, referência imutável | RF016_snapshotNaoMudaComMovimentacaoPosterior; UC10_* |
 | RF-017 | `registrarContagem`, substituição com histórico | CA020; RF017_contagemNegativaRejeitada; UC10_substituiContagemComHistorico |
-| RF-018 | Revisão, aprovação, conclusão atômica e repetível | CA021; RF018_*; RF026_operadorNaoAbreNemConcluiInventario |
+| RF-018 | Revisão, aprovação, conclusão atômica e repetível | CA021; RF018_*; RF026_operadorNaoAbreNemConcluiInventario; matriz de 17 transições proibidas e cancelamento nos três estados permitidos |
 | RF-019 | `posicao`, físico, reservado, disponível e consistência | CT007, CA006–008; consultas e autorização por depósito |
 | RF-020 | `custoMedio`, média ponderada e HALF_UP | CT015; RN024_arredondaHalfUp; RF013_preservaCustoValidadeFornecedor |
 | RF-021 | `requerReposicao`, `gerarAlertas` | CA022; RN021_reposicaoAbaixoIgualAcima; UC13_* |
@@ -112,7 +112,7 @@ Cada linha possui um método próprio em `CriteriosAceitacaoTest`.
 | RNF-007 | Eventos estruturados sem corpo de requisição, senha ou token; identidades de demonstração sem documentos pessoais |
 | RNF-008 | Evento imutável com ator, instante, ação, recurso, resultado e correlação |
 | RNF-009 | HTTP com mensagens controladas, códigos de domínio e correlação; JSON inválido sem stack trace |
-| RNF-010 | Interface semântica, foco visível e testes axe automatizados; auditoria manual WCAG permanece necessária |
+| RNF-010 | Interface semântica, foco visível e testes axe automatizados; auditoria manual WCAG permanece necessária; axe aprovado em 15 telas/estados por navegador |
 | RNF-011 | Endpoint `/api/saude`; meta de 99,5% depende da instalação e de acompanhamento mensal |
 | RNF-012 | Repetição segura por chave e conteúdo; rollback conserva capacidade de retry |
 | RNF-013 | Regras exercitadas sem navegador/rede; HTTP está em suíte separada |
